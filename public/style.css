@@ -10,4 +10,3 @@
 *{background-color:black;color:white;}
 @media screen and (min-aspect-ratio:8/13){#playground{width:auto;height:100%;}}
 @media screen and (max-aspect-ratio:8/13){#playground{height:auto;width:100%;}}
-html,body{width:400px;height:650px;}
