@@ -337,14 +337,14 @@ var Game = function () {
         value: function onDragStarted(e) {
             if (!this.isLocked) {
                 this.mouseIsDown = true;
-                this.trigger.start = this.trigger.end = [e.offsetX, e.offsetY];
+                this.trigger.start = this.trigger.end = [this.width*(e.offsetX/this.canvas.offsetWidth),(e.offsetY/this.canvas.offsetHeight)*this.height];
             }
         }
     }, {
         key: 'onPointerMove',
         value: function onPointerMove(e) {
             if (this.mouseIsDown) {
-                this.trigger.end = [e.offsetX, e.offsetY];
+                this.trigger.end = [this.width*(e.offsetX/this.canvas.offsetWidth),(e.offsetY/this.canvas.offsetHeight)*this.height];
             }
         }
     }, {
