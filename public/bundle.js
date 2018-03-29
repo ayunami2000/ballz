@@ -142,10 +142,10 @@ var Game = function () {
           first.target.dispatchEvent(simulatedEvent);
           event.preventDefault();
         }
-    document.addEventListener("touchstart", touchHandler, true);
-    document.addEventListener("touchmove", touchHandler, true);
-    document.addEventListener("touchend", touchHandler, true);
-    document.addEventListener("touchcancel", touchHandler, true);
+        this.canvas.addEventListener("touchstart", touchHandler, true);
+        this.canvas.addEventListener("touchmove", touchHandler, true);
+        this.canvas.addEventListener("touchend", touchHandler, true);
+        this.canvas.addEventListener("touchcancel", touchHandler, true);
         // Boxes and Balls arrays
         this.boxes = [];
         this.balls = [];
