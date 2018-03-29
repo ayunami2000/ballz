@@ -123,11 +123,31 @@ var Game = function () {
         // Dynamic variables setup
         this.initalizeDynamicVariables
         // Trigger Listeners
-        ();this.canvas.addEventListener('mousedown', this.onDragStarted.bind(this));this.canvas.addEventListener("touchstart",this.onDragStarted.bind(this));
-        this.canvas.addEventListener('mousemove', this.onPointerMove.bind(this));this.canvas.addEventListener("touchmove",this.onPointerMove.bind(this));
-        this.canvas.addEventListener('mouseup', this.onDragEnded.bind(this));this.canvas.addEventListener("touchend",this.onDragEnded.bind(this)
+        ();this.canvas.addEventListener('mousedown', this.onDragStarted.bind(this));
+        this.canvas.addEventListener('mousemove', this.onPointerMove.bind(this));
+        this.canvas.addEventListener('mouseup', this.onDragEnded.bind(this));
+        function touchHandler(event){
+          var touches=event.changedTouches,first=touches[0],type="";
+          switch(event.type){
+            case "touchstart": type = "mousedown"; break;
+            case "touchmove":  type = "mousemove"; break;        
+            case "touchend":   type = "mouseup";   break;
+            default:           return;
+          }
+          var simulatedEvent = document.createEvent("MouseEvent");
+          simulatedEvent.initMouseEvent(type, true, true, window, 1, 
+                                        first.screenX, first.screenY, 
+                                        first.clientX, first.clientY, false, 
+                                        false, false, false, 0/*left*/, null);
+          first.target.dispatchEvent(simulatedEvent);
+          event.preventDefault();
+        }
+    document.addEventListener("touchstart", touchHandler, true);
+    document.addEventListener("touchmove", touchHandler, true);
+    document.addEventListener("touchend", touchHandler, true);
+    document.addEventListener("touchcancel", touchHandler, true);
         // Boxes and Balls arrays
-        );this.boxes = [];
+        this.boxes = [];
         this.balls = [];
         // Let's play
         this.goNextStep();
@@ -317,14 +337,14 @@ var Game = function () {
         value: function onDragStarted(e) {
             if (!this.isLocked) {
                 this.mouseIsDown = true;
-                this.trigger.start = this.trigger.end = e.touches?[e.touches[0].offsetX,e.touches[0].offsetY]:[e.offsetX, e.offsetY];
+                this.trigger.start = this.trigger.end = [e.offsetX, e.offsetY];
             }
         }
     }, {
         key: 'onPointerMove',
         value: function onPointerMove(e) {
             if (this.mouseIsDown) {
-                this.trigger.end = e.touches?[e.touches[0].offsetX,e.touches[0].offsetY]:[e.offsetX, e.offsetY];
+                this.trigger.end = [e.offsetX, e.offsetY];
             }
         }
     }, {
