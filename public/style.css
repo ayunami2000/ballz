@@ -9,5 +9,5 @@
     margin:0;
 }
 *{background-color:black;color:white;}
-@media screen and (orientation:portrait){width:100%;height:auto;}
-@media screen and (orientation:landscape){height:100%;width:auto;}
+@media screen and (orientation:portrait){#playground{width:100%;height:auto;}}
+@media screen and (orientation:landscape){#playground{height:100%;width:auto;}}
