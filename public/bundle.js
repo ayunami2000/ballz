@@ -123,9 +123,9 @@ var Game = function () {
         // Dynamic variables setup
         this.initalizeDynamicVariables
         // Trigger Listeners
-        ();this.canvas.addEventListener('mousedown', this.onDragStarted.bind(this));
-        this.canvas.addEventListener('mousemove', this.onPointerMove.bind(this));
-        this.canvas.addEventListener('mouseup', this.onDragEnded.bind(this)
+        ();this.canvas.addEventListener('mousedown', this.onDragStarted.bind(this));this.canvas.addEventListener("touchstart",this.onDragStarted.bind(this));
+        this.canvas.addEventListener('mousemove', this.onPointerMove.bind(this));this.canvas.addEventListener("touchmove",this.onPointerMove.bind(this));
+        this.canvas.addEventListener('mouseup', this.onDragEnded.bind(this));this.canvas.addEventListener("touchend",this.onDragEnded.bind(this)
         // Boxes and Balls arrays
         );this.boxes = [];
         this.balls = [];
