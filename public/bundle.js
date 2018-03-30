@@ -126,6 +126,7 @@ var Game = function () {
         ();this.canvas.addEventListener('mousedown', this.onDragStarted.bind(this));
         this.canvas.addEventListener('mousemove', this.onPointerMove.bind(this));
         this.canvas.addEventListener('mouseup', this.onDragEnded.bind(this));
+        if(window.parent!=window){window.parent.frameRegister(window.frameElement.id);}
         function touchHandler(event){
           var touches=event.changedTouches,first=touches[0],type="";
           switch(event.type){
